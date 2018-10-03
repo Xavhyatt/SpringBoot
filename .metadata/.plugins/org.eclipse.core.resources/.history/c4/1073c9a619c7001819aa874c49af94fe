@@ -1,0 +1,46 @@
+package com.qa.springBootExc2.controller;
+
+import java.lang.annotation.Annotation;
+
+import javax.annotation.Resource;
+import javax.annotation.Resource.AuthenticationType;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.qa.springBootExc2.exception.ResourceNotFoundException;
+import com.qa.springBootExc2.model.mySpringBootDataModel;
+import com.qa.springBootExc2.repository.personRepository;
+
+@RestController
+@RequestMapping("/api")
+public class SpringBootDataController {
+
+	@Autowired
+	personRepository myRepository;
+	
+	// Method to create a person
+	@PostMapping("/MySpringDataModel")
+	public mySpringBootDataModel createPerson(@Valid @RequestBody mySpringBootDataModel mSDM) {
+		return myRepository.save(mSDM);
+	}
+	
+	//Method to get a person
+	@GetMapping("person/{id}")
+	public mySpringBootDataModel getPersonbyID(@PathVariable(value ="id") Long personID) {
+		return myRepository.findById(personID).orElseThrow(()-> new ResourceNotFoundException("mySpringBootDataModel", "id", personID));
+			
+			
+	
+	//Method to get all people
+	
+	//Method to update a person
+	
+	//Method to remove a person
+}

@@ -1,0 +1,34 @@
+package com.qa.springBootExc2.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.qa.springBootExc2.model.mySpringBootDataModel;
+import com.qa.springBootExc2.repository.personRepository;
+
+@RestController
+@RequestMapping("/api")
+public class SpringBootDataController {
+
+	@Autowired
+	personRepository myRepository;
+	
+	// Method to create a person
+	@PostMapping("/MySpringDataModel")
+	public mySpringBootDataModel createPerson(@Valid @RequestBody mySpringBootDataModel mDSM) {
+		return myRepository.save(mSDM);
+	}
+	
+	//Method to get a person
+	
+	//Method to get all people
+	
+	//Method to update a person
+	
+	//Method to remove a person
+}
